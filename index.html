@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>ViralPixel | Gestión Digital y Contenidos | Diseño Web y Marketing Digital</title>
+    <meta name="description"
+        content="Servicios profesionales de gestión digital, diseño web, redes sociales, diseño gráfico y producción audiovisual para empresas y emprendedores.">
+    <meta name="keywords"
+        content="ViralPixel, Ronald Olarte, Diseño Web, Redes Sociales, Marketing Digital, San Gil, Santander, Producción Audiovisual">
+    <meta name="author" content="Ronald Olarte - ViralPixel">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="ViralPixel | Gestión Digital y Contenidos">
+    <meta property="og:description"
+        content="Impulsamos tu presencia en internet con diseño web y estrategias de alto impacto.">
+    <meta property="og:image"
+        content="https://res.cloudinary.com/denwpycde/image/upload/v1772762706/logo_viralpixel_1_k0yk90.png">
+    <meta property="og:url" content="https://viralpixel.com.co/">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #6610e0;
+            /* ViralPixel Purple */
+            --accent: #f2d60f;
+            /* ViralPixel Yellow */
+            --dark: #1D1D1F;
+            --white: #FFFFFF;
+            --gray: #86868B;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            height: 70px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--dark);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin-left: 20px;
+        }
+
+        /* --- LANGUAGE SWITCHER --- */
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid #E5E5E7;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: #F5F5F7;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            opacity: 1;
+            /* Always visible to start */
+            transform: none;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            /* For parallax */
+            background: radial-gradient(circle at 50% 50%, #f0f0f0 0%, #ffffff 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 10px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            color: var(--gray);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-tags {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .hero-photo-container {
+            position: absolute;
+            bottom: -50px;
+            right: 5%;
+            width: 400px;
+            z-index: 1;
+            animation: fadeInRight 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-photo {
+            width: 100%;
+            opacity: 1;
+            filter: none;
+            mix-blend-mode: normal;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .hero-info {
+            position: absolute;
+            left: 5%;
+            bottom: 10%;
+            text-align: left;
+            animation: fadeInLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .hero-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary);
+            animation: fadeInUp 1s ease-out 0.8s both;
+            box-shadow: 0 10px 20px rgba(102, 16, 224, 0.2);
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--dark);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(242, 214, 15, 0.3);
+        }
+
+        /* --- ABOUT --- */
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+
+        .about-accent {
+            color: var(--primary);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* --- SERVICES --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* --- PROCESS --- */
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .process-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border: 4px solid var(--accent);
+        }
+
+        /* --- PORTFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 16, 224, 0.9);
+            /* Purple overlay */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* --- BENEFITS --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .benefit-item i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* --- CONTACT --- */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input,
+        textarea {
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #E5E5E7;
+            background: #F5F5F7;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--dark);
+            background: #fff;
+        }
+
+        .success-message {
+            display: none;
+            padding: 20px;
+            background: #D4EDDA;
+            color: #155724;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* --- WHATSAPP --- */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            text-decoration: none;
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse-wa 2s infinite;
+        }
+
+        @keyframes pulse-wa {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid #E5E5E7;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 40px;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-photo-container {
+                display: none;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-info {
+                position: static;
+                text-align: center;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <img src="https://res.cloudinary.com/denwpycde/image/upload/v1772762706/logo_viralpixel_1_k0yk90.png"
+                    alt="ViralPixel Logo">
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" data-i18n="nav-home">Inicio</a></li>
+                <li><a href="#services" data-i18n="nav-services">Servicios</a></li>
+                <li><a href="#process" data-i18n="nav-process">Proceso</a></li>
+                <li><a href="#portfolio" data-i18n="nav-portfolio">Portafolio</a></li>
+                <li><a href="#benefits" data-i18n="nav-benefits">Beneficios</a></li>
+                <li><a href="#contact" data-i18n="nav-contact">Contacto</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+            </div>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero visible" id="hero">
+        <div class="hero-bg" id="hero-bg"></div>
+        <div class="container hero-content">
+            <img src="https://res.cloudinary.com/denwpycde/image/upload/v1772762706/logo_viralpixel_1_k0yk90.png"
+                alt="ViralPixel" class="hero-logo">
+            <h1 class="hero-title" data-i18n="hero-title">GESTIÓN DIGITAL<br>Y CONTENIDOS</h1>
+            <h3 class="hero-subtitle" data-i18n="hero-subtitle">Impulsamos tu presencia en internet</h3>
+            <p class="hero-tags" data-i18n="hero-tags">Diseño web · redes sociales · contenido audiovisual · identidad
+                visual</p>
+            <a href="https://viralpixel.com.co/" class="btn" target="_blank" data-i18n="hero-btn">Visitar sitio web</a>
+        </div>
+
+        <div class="hero-photo-container" id="hero-photo">
+            <img src="https://res.cloudinary.com/denwpycde/image/upload/v1772843572/Generated_Image_September_28__2025_-_6_41PgM-removebg-preview_imx0w2.png"
+                alt="Ronald Olarte" class="hero-photo">
+        </div>
+
+        <div class="hero-info">
+            <h4 data-i18n="hero-name">Ronald Olarte</h4>
+            <p data-i18n="hero-job">Gestor Digital</p>
+            <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="hero-location">San Gil – Santander</span></p>
+        </div>
+    </section>
+
+    <!-- SOBRE EL SERVICIO -->
+    <section id="about">
+        <div class="container">
+            <div class="about-text">
+                <p data-i18n="about-p1">Soy <span class="about-accent">gestor digital</span> especializado en ayudar a
+                    emprendedores,
+                    negocios y empresas locales a mejorar su presencia en internet, atraer clientes y comunicar su marca
+                    de forma profesional.</p>
+                <br>
+                <p data-i18n="about-p2">Trabajamos combinando: <span class="about-accent">Estrategia, Diseño, Contenido
+                        y Marketing</span>
+                    para construir marcas visibles, modernas y competitivas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="services-title">Servicios Principales</h2>
+                <p data-i18n="services-subtitle">Soluciones integrales para el mundo digital.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-hashtag service-icon"></i>
+                    <h3 data-i18n="s1-title">Gestión de Redes Sociales</h3>
+                    <p data-i18n="s1-desc">Contenido estratégico y manejo de comunidad para elevar tu marca.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <h3 data-i18n="s2-title">Diseño Web</h3>
+                    <p data-i18n="s2-desc">Páginas modernas, rápidas y optimizadas para convertir visitantes en
+                        clientes.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-pen-nib service-icon"></i>
+                    <h3 data-i18n="s3-title">Diseño Gráfico</h3>
+                    <p data-i18n="s3-desc">Identidad visual y piezas creativas que capturan la esencia de tu negocio.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-video service-icon"></i>
+                    <h3 data-i18n="s4-title">Producción Audiovisual</h3>
+                    <p data-i18n="s4-desc">Videos dinámicos y de alta calidad para captar la atención de tu audiencia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="process-title">Proceso de Trabajo</h2>
+                <p data-i18n="process-subtitle">Cómo transformamos tu marca paso a paso.</p>
+            </div>
+            <div class="process-container">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4 data-i18n="p1-title">Diagnóstico</h4>
+                    <p data-i18n="p1-desc">Analizamos tu situación actual.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4 data-i18n="p2-title">Estrategia</h4>
+                    <p data-i18n="p2-desc">Trazamos el camino al éxito.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4 data-i18n="p3-title">Diseño</h4>
+                    <p data-i18n="p3-desc">Creamos visuales impactantes.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4 data-i18n="p4-title">Implementación</h4>
+                    <p data-i18n="p4-desc">Lanzamos y ejecutamos.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h4 data-i18n="p5-title">Optimización</h4>
+                    <p data-i18n="p5-desc">Medimos y mejoramos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="portfolio-title">Portafolio de Proyectos</h2>
+                <p data-i18n="portfolio-subtitle">Nuestros trabajos más recientes.</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Item 1 -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600"
+                        alt="Diseño Web" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-i18n="proj1-title">Restaurante Italiano</h3>
+                        <p data-i18n="s2-title">Diseño Web</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600"
+                        alt="Redes Sociales" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-i18n="proj2-title">Café Local</h3>
+                        <p data-i18n="s1-title">Redes Sociales</p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=600"
+                        alt="Branding" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-i18n="proj3-title">Agencia de Turismo</h3>
+                        <p data-i18n="proj3-service">Branding</p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600"
+                        alt="Identidad Visual" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-i18n="proj4-title">Emprendimiento Digital</h3>
+                        <p data-i18n="proj4-service">Identidad Visual</p>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=600"
+                        alt="Marketing" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-i18n="proj5-title">Campaña Instagram</h3>
+                        <p data-i18n="proj5-service">Marketing</p>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=600"
+                        alt="Producción Audiovisual" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-i18n="proj6-title">Video Promocional</h3>
+                        <p data-i18n="s4-title">Producción Audiovisual</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="benefits-title">Beneficios para tu Empresa</h2>
+                <p data-i18n="benefits-subtitle">Impulsamos tu crecimiento con nosotros.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-eye"></i>
+                    <h4 data-i18n="b1-text">Mayor visibilidad online</h4>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-user-tie"></i>
+                    <h4 data-i18n="b2-text">Imagen profesional</h4>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users"></i>
+                    <h4 data-i18n="b3-text">Más clientes potenciales</h4>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-star"></i>
+                    <h4 data-i18n="b4-text">Contenido atractivo</h4>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4 data-i18n="b5-text">Posicionamiento de marca</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-i18n="contact-title">¿Listo para elevar tu marca?</h2>
+                <p data-i18n="contact-subtitle">Contáctanos y empecemos a trabajar juntos.</p>
+            </div>
+            <div class="contact-content">
+                <div>
+                    <h3 data-i18n="contact-h3">Hablemos de tu proyecto</h3>
+                    <p data-i18n="contact-p1">Estamos ubicados en San Gil, Santander, pero trabajamos con todo el mundo.
+                    </p>
+                    <br>
+                    <p><i class="fas fa-envelope"></i> ronald@viralpixel.com.co</p>
+                    <p><i class="fas fa-phone"></i> +57 321 000 0000</p>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="input-group">
+                        <label for="name" data-i18n="form-name">Nombre</label>
+                        <input type="text" id="name" required placeholder="Tu nombre">
+                    </div>
+                    <div class="input-group">
+                        <label for="email" data-i18n="form-email">Correo electrónico</label>
+                        <input type="email" id="email" required placeholder="tu@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="company" data-i18n="form-company">Empresa</label>
+                        <input type="text" id="company" placeholder="Nombre de tu empresa">
+                    </div>
+                    <div class="input-group">
+                        <label for="message" data-i18n="form-message">Mensaje</label>
+                        <textarea id="message" rows="5" required placeholder="¿En qué podemos ayudarte?"></textarea>
+                    </div>
+                    <button type="submit" class="btn" data-i18n="form-btn">Enviar mensaje</button>
+                    <div id="success" class="success-message" data-i18n="form-success">¡Gracias! Tu mensaje ha sido
+                        enviado correctamente.</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p data-i18n="footer-copy">&copy; 2026 ViralPixel. Todos los derechos reservados. | Diseñado por Ronald
+                Olarte.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- TRANSLATIONS ---
+        const translations = {
+            es: {
+                "nav-home": "Inicio", "nav-services": "Servicios", "nav-process": "Proceso", "nav-portfolio": "Portafolio", "nav-benefits": "Beneficios", "nav-contact": "Contacto",
+                "hero-title": "GESTIÓN DIGITAL<br>Y CONTENIDOS", "hero-subtitle": "Impulsamos tu presencia en internet", "hero-tags": "Diseño web · redes sociales · contenido audiovisual · identidad visual", "hero-btn": "Visitar sitio web", "hero-name": "Ronald Olarte", "hero-job": "Gestor Digital", "hero-location": "San Gil – Santander",
+                "about-p1": `Soy <span class="about-accent">gestor digital</span> especializado en ayudar a emprendedores, negocios y empresas locales a mejorar su presencia en internet, atraer clientes y comunicar su marca de forma profesional.`,
+                "about-p2": `Trabajamos combinando: <span class="about-accent">Estrategia, Diseño, Contenido y Marketing</span> para construir marcas visibles, modernas y competitivas.`,
+                "services-title": "Servicios Principales", "services-subtitle": "Soluciones integrales para el mundo digital.",
+                "s1-title": "Gestión de Redes Sociales", "s1-desc": "Contenido estratégico y manejo de comunidad para elevar tu marca.",
+                "s2-title": "Diseño Web", "s2-desc": "Páginas modernas, rápidas y optimizadas para convertir visitantes en clientes.",
+                "s3-title": "Diseño Gráfico", "s3-desc": "Identidad visual y piezas creativas que capturan la esencia de tu negocio.",
+                "s4-title": "Producción Audiovisual", "s4-desc": "Videos dinámicos y de alta calidad para captar la atención de tu audiencia.",
+                "process-title": "Proceso de Trabajo", "process-subtitle": "Cómo transformamos tu marca paso a paso.",
+                "p1-title": "Diagnóstico", "p1-desc": "Analizamos tu situación actual.",
+                "p2-title": "Estrategia", "p2-desc": "Trazamos el camino al éxito.",
+                "p3-title": "Diseño", "p3-desc": "Creamos visuales impactantes.",
+                "p4-title": "Implementación", "p4-desc": "Lanzamos y ejecutamos.",
+                "p5-title": "Optimización", "p5-desc": "Medimos y mejoramos."
+            },
+            en: {
+                "nav-home": "Home", "nav-services": "Services", "nav-process": "Process", "nav-portfolio": "Portfolio", "nav-benefits": "Benefits", "nav-contact": "Contact",
+                "hero-title": "DIGITAL MANAGEMENT<br>& CONTENT", "hero-subtitle": "We boost your internet presence", "hero-tags": "Web design · social media · audiovisual content · visual identity", "hero-btn": "Visit website", "hero-name": "Ronald Olarte", "hero-job": "Digital Manager", "hero-location": "San Gil – Santander",
+                "about-p1": `I am a <span class="about-accent">digital manager</span> specialized in helping entrepreneurs, businesses, and local companies improve their internet presence, attract customers, and communicate their brand professionally.`,
+                "about-p2": `We work by combining: <span class="about-accent">Strategy, Design, Content, and Marketing</span> to build visible, modern, and competitive brands.`,
+                "services-title": "Main Services", "services-subtitle": "Integrated solutions for the digital world.",
+                "s1-title": "Social Media Management", "s1-desc": "Strategic content and community management to elevate your brand.",
+                "s2-title": "Web Design", "s2-desc": "Modern, fast, and optimized pages to convert visitors into customers.",
+                "s3-title": "Graphic Design", "s3-desc": "Visual identity and creative pieces that capture the essence of your business.",
+                "s4-title": "Audiovisual Production", "s4-desc": "Dynamic, high-quality videos to capture your audience's attention.",
+                "process-title": "Working Process", "process-subtitle": "How we transform your brand step by step.",
+                "p1-title": "Diagnosis", "p1-desc": "We analyze your current situation.",
+                "p2-title": "Strategy", "p2-desc": "We chart the path to success.",
+                "p3-title": "Design", "p3-desc": "We create stunning visuals.",
+                "p4-title": "Implementation", "p4-desc": "We launch and execute.",
+                "p5-title": "Optimization", "p5-desc": "We measure and improve."
+            },
+            fr: {
+                "nav-home": "Accueil", "nav-services": "Services", "nav-process": "Processus", "nav-portfolio": "Portfolio", "nav-benefits": "Avantages", "nav-contact": "Contact",
+                "hero-title": "GESTION DIGITALE<br>ET CONTENU", "hero-subtitle": "Nous boostons votre présence sur internet", "hero-tags": "Design web · réseaux sociaux · contenu audiovisuel · identité visuelle", "hero-btn": "Visiter le site web", "hero-name": "Ronald Olarte", "hero-job": "Gestionnaire Digital", "hero-location": "San Gil – Santander",
+                "about-p1": `Je suis un <span class="about-accent">gestionnaire digital</span> spécialisé dans l'aide aux entrepreneurs, aux commerces et aux entreprises locales pour améliorer leur présence en ligne, attirer des clients et communiquer leur marque professionnellement.`,
+                "about-p2": `Nous travaillons en combinant: <span class="about-accent">Stratégie, Design, Contenu et Marketing</span> pour construire des marques visibles, modernes et compétitives.`,
+                "services-title": "Services Principaux", "services-subtitle": "Solutions intégrales pour le monde numérique.",
+                "s1-title": "Gestion des Réseaux Sociaux", "s1-desc": "Contenu stratégique et gestion de communauté para élever votre marque.",
+                "s2-title": "Conception Web", "s2-desc": "Des pages modernes, rapides et optimisées pour convertir les visiteurs en clients.",
+                "s3-title": "Design Graphique", "s3-desc": "Identité visuelle et pièces créatives que capturent l'essence de votre entreprise.",
+                "s4-title": "Production Audiovisuelle", "s4-desc": "Des vidéos dynamiques et de haute qualité pour capter l'attention de votre public.",
+                "process-title": "Processus de Travail", "process-subtitle": "Comment nous transformons votre marque étape par étape.",
+                "p1-title": "Diagnostic", "p1-desc": "Nous analysons votre situation actuelle.",
+                "p2-title": "Stratégie", "p2-desc": "Nous traçons le chemin du succès.",
+                "p3-title": "Design", "p3-desc": "Nous créons des visuels percutants.",
+                "p4-title": "Mise en œuvre", "p4-desc": "Nous lançons et exécutons.",
+                "p5-title": "Optimisation", "p5-desc": "Nous mesurons et améliorons."
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update active state of buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // --- NAVBAR SCROLL EFFECT ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // --- MOBILE MENU ---
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navLinks = document.getElementById('nav-links');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- PARALLAX EFFECT ---
+        window.addEventListener('scroll', () => {
+            const scroll = window.scrollY;
+            const heroBg = document.getElementById('hero-bg');
+            const heroPhoto = document.getElementById('hero-photo');
+
+            // Move background slower
+            if (heroBg) heroBg.style.transform = `translateY(${scroll * 0.3}px)`;
+
+            // Move photo opposite or different speed
+            if (heroPhoto) {
+                heroPhoto.style.transform = `translateY(${scroll * 0.15}px)`;
+            }
+        });
+
+        // --- SCROLL REVEAL (Intersection Observer) ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Specific trigger for process steps
+                    if (entry.target.id === 'process') {
+                        const steps = entry.target.querySelectorAll('.process-step');
+                        steps.forEach((step, index) => {
+                            setTimeout(() => {
+                                step.classList.add('active');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            revealObserver.observe(section);
+        });
+
+        // --- FORM HANDLING ---
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Simple validation
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                if (name && email && message) {
+                    // UI feedback
+                    contactForm.style.opacity = '0.5';
+                    contactForm.style.pointerEvents = 'none';
+
+                    setTimeout(() => {
+                        successMessage.style.display = 'block';
+                        contactForm.reset();
+                        contactForm.style.opacity = '1';
+                        contactForm.style.pointerEvents = 'all';
+
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    }, 1000);
+                }
+            });
+        }
+
+        // --- SMOOTH INTERNAL LINKS ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
