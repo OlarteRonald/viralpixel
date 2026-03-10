@@ -874,22 +874,23 @@
                     <p><i class="fas fa-envelope"></i> ronald@viralpixel.com.co</p>
                     <p><i class="fas fa-phone"></i> +57 321 000 0000</p>
                 </div>
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/mnjgpaqg" method="POST">
                     <div class="input-group">
                         <label for="name" data-i18n="form-name">Nombre</label>
-                        <input type="text" id="name" required placeholder="Tu nombre">
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre">
                     </div>
                     <div class="input-group">
                         <label for="email" data-i18n="form-email">Correo electrónico</label>
-                        <input type="email" id="email" required placeholder="tu@email.com">
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
                     </div>
                     <div class="input-group">
                         <label for="company" data-i18n="form-company">Empresa</label>
-                        <input type="text" id="company" placeholder="Nombre de tu empresa">
+                        <input type="text" id="company" name="company" placeholder="Nombre de tu empresa">
                     </div>
                     <div class="input-group">
                         <label for="message" data-i18n="form-message">Mensaje</label>
-                        <textarea id="message" rows="5" required placeholder="¿En qué podemos ayudarte?"></textarea>
+                        <textarea id="message" name="message" rows="5" required
+                            placeholder="¿En qué podemos ayudarte?"></textarea>
                     </div>
                     <button type="submit" class="btn" data-i18n="form-btn">Enviar mensaje</button>
                     <div id="success" class="success-message" data-i18n="form-success">¡Gracias! Tu mensaje ha sido
@@ -1096,16 +1097,29 @@
                     contactForm.style.opacity = '0.5';
                     contactForm.style.pointerEvents = 'none';
 
-                    setTimeout(() => {
-                        successMessage.style.display = 'block';
-                        contactForm.reset();
+                    // Formspree Integration via AJAX
+                    fetch(contactForm.action, {
+                        method: contactForm.method,
+                        body: new FormData(contactForm),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            successMessage.style.display = 'block';
+                            contactForm.reset();
+                            setTimeout(() => {
+                                successMessage.style.display = 'none';
+                            }, 5000);
+                        } else {
+                            alert("Hubo un error al enviar el mensaje. Por favor intenta de nuevo.");
+                        }
+                    }).catch(error => {
+                        alert("Hubo un error de conexión. Por favor intenta de nuevo.");
+                    }).finally(() => {
                         contactForm.style.opacity = '1';
                         contactForm.style.pointerEvents = 'all';
-
-                        setTimeout(() => {
-                            successMessage.style.display = 'none';
-                        }, 5000);
-                    }, 1000);
+                    });
                 }
             });
         }
