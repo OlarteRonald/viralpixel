@@ -1177,20 +1177,51 @@
     </script>
 
     <script>
-        // --- CLIENT CODE ---
+        // --- CLIENT CODE COMPLETO ---
+
+        /**
+         * Simulación de obtención de token desde el servidor.
+         * En un entorno real, esta función haría un fetch a tu backend.
+         */
+        async function getUserToken() {
+            try {
+                // Ejemplo de llamada a servidor (Descomentar cuando el backend esté listo):
+                /*
+                const response = await fetch('/api/get-chatbase-token');
+                const data = await response.json();
+                return data.token;
+                */
+
+                // Por ahora, simulamos un log para depuración
+                console.log("Chatbase: Intentando obtener token de identidad...");
+                return null; // Retornamos null hasta que el endpoint sea real
+            } catch (error) {
+                console.error("Error al obtener el token del servidor:", error);
+                return null;
+            }
+        }
+
         async function initChatbase() {
             try {
-                // Para que esto funcione, debes tener implementada la función getUserToken() en tu frontend
-                if (typeof getUserToken === 'function') {
-                    const token = await getUserToken(); // Get the token from your server
-                    window.chatbase('identify', { token }); // identify the user with Chatbase
+                const token = await getUserToken();
+
+                if (token) {
+                    window.chatbase('identify', { token });
+                    console.log("Chatbase: Identidad verificada enviada.");
+                } else {
+                    console.warn("Chatbase: No se obtuvo token. El chat funcionará en modo público.");
                 }
             } catch (error) {
                 console.error("Error al identificar usuario en Chatbase:", error);
             }
         }
 
-        initChatbase();
+        // Ejecutar identificación cuando Chatbase esté listo
+        if (window.chatbase) {
+            initChatbase();
+        } else {
+            window.addEventListener('load', initChatbase);
+        }
     </script>
 </body>
 
