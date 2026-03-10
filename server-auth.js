@@ -1,44 +1,22 @@
-/**
- * --- SERVER CODE ---
- * 
- * Este código debe ejecutarse en tu servidor backend (Node.js).
- * Para que funcione, debes instalar la librería jsonwebtoken:
- * npm install jsonwebtoken
- */
-
+// --- SERVER CODE ---
 const jwt = require('jsonwebtoken');
 
-// Tu clave secreta de Chatbase (debe guardarse como variable de entorno, no en el código)
-const secret = process.env.CHATBOT_IDENTITY_SECRET; 
+const secret = process.env.CHATBOT_IDENTITY_SECRET; // Your chatbase secret key (should be stored as a secret not in the code)
 
-/**
- * Función de ejemplo para generar el token de identidad.
- * Debes integrarla con tu sistema de autenticación.
- */
-async function generateChatbaseToken(user) {
-    if (!user) return null;
+// Esta es una función de ejemplo, debes adaptarla a tu sistema de autenticación
+async function handleChatbaseToken(req) {
+    const user = await getSignedInUser(req); // Get the current user signed in to your site
 
     const token = jwt.sign(
-        { 
-            user_id: user.id, // ID único de tu usuario
-            email: user.email, // Email del usuario
-            stripe_accounts: user.stripe_accounts, // Opcional: para integración con Stripe
-            // ... otros atributos personalizados que quieras pasar a Chatbase
-        }, 
-        secret, 
+        {
+            user_id: user.id, // Your user's id
+            email: user.email, // User's email
+            stripe_accounts: user.stripe_accounts, // User's stripe accounts for stripe integration
+            // ... other custom attributes
+        },
+        secret,
         { expiresIn: '1h' }
     );
 
     return token;
 }
-
-// Ejemplo de uso en un endpoint de API (Express):
-/*
-app.get('/api/chatbase-token', async (req, res) => {
-    const user = await getSignedInUser(req); // Obtener usuario de la sesión
-    if (!user) return res.status(401).send('No autorizado');
-    
-    const token = await generateChatbaseToken(user);
-    res.json({ token });
-});
-*/

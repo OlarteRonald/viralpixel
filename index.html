@@ -1176,19 +1176,18 @@
         (function () { if (!window.chatbase || window.chatbase("getState") !== "initialized") { window.chatbase = (...arguments) => { if (!window.chatbase.q) { window.chatbase.q = [] } window.chatbase.q.push(arguments) }; window.chatbase = new Proxy(window.chatbase, { get(target, prop) { if (prop === "q") { return target.q } return (...args) => target(prop, ...args) } }) } const onLoad = function () { const script = document.createElement("script"); script.src = "https://www.chatbase.co/embed.min.js"; script.id = "507grLkCKcxS3o2i_jkD-"; script.domain = "www.chatbase.co"; document.body.appendChild(script) }; if (document.readyState === "complete") { onLoad() } else { window.addEventListener("load", onLoad) } })();
 
         // --- CLIENT CODE ---
-        async function initChatbaseIdentity() {
+        // Nota: El código se envuelve en una función autoejecutable para manejar el 'await'
+        (async () => {
             try {
-                // Esta función debería llamar a tu backend para obtener un token JWT firmado
-                // const token = await getUserToken(); 
-                // window.chatbase('identify', { token }); 
-
-                console.log("Chatbase Identity Verification preparada (requiere backend)");
+                // Para que esto funcione, debes definir la función getUserToken() que llame a tu servidor
+                if (typeof getUserToken === 'function') {
+                    const token = await getUserToken(); // Get the token from your server
+                    window.chatbase('identify', { token }); // identify the user with Chatbase
+                }
             } catch (error) {
-                console.error("Error al identificar usuario en Chatbase:", error);
+                console.error("Error en Chatbase Identify:", error);
             }
-        }
-
-        initChatbaseIdentity();
+        })();
     </script>
 </body>
 
