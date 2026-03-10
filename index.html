@@ -1171,36 +1171,6 @@
 
     </script>
 
-    <!-- CONFIGURACIÓN DE CHATBASE -->
-    <script>
-        window.chatbase = window.chatbase || function () {
-            (window.chatbase.q = window.chatbase.q || []).push(arguments);
-        };
-    </script>
-    <script src="https://www.chatbase.co/embed.min.js" id="507grLkCKcxS3o2i_jkD-" domain="www.chatbase.co" defer>
-    </script>
-
-    <script>
-        // --- CLIENT CODE (Identidad Segura) ---
-        // Esta función debe ejecutarse después de que el usuario haya iniciado sesión
-        async function authenticateChatbase() {
-            try {
-                // IMPORTANTE: Debes tener definida esta función para obtener el token de tu servidor
-                if (typeof getUserToken === 'function') {
-                    const token = await getUserToken(); // Get the token from your server
-                    window.chatbase('identify', { token }); // identify the user with Chatbase
-                    console.log("Chatbase: Usuario identificado correctamente.");
-                } else {
-                    console.warn("Chatbase: La función getUserToken() no está definida. La identificación no se realizará.");
-                }
-            } catch (error) {
-                console.error("Chatbase Identify Error:", error);
-            }
-        }
-
-        // Intentar identificar al cargar (si ya hay sesión)
-        window.addEventListener('load', authenticateChatbase);
-    </script>
 </body>
 
 </html>
