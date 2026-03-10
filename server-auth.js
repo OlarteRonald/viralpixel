@@ -6,12 +6,12 @@ const secret = process.env.CHATBOT_IDENTITY_SECRET; // Your chatbase secret key 
 const user = await getSignedInUser(); // Get the current user signed in to your site
 
 const token = jwt.sign(
-    {
+    { 
         user_id: user.id, // Your user's id
         email: user.email, // User's email
         stripe_accounts: user.stripe_accounts, // User's stripe accounts for stripe integration
         // ... other custom attributes
-    },
-    secret,
+    }, 
+    secret, 
     { expiresIn: '1h' }
 );

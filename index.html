@@ -1178,12 +1178,21 @@
 
     <script>
         // --- CLIENT CODE ---
+        // Definition of getUserToken to avoid ReferenceError
+        async function getUserToken() {
+            // This function should call your server to get the JWT token
+            // For now, it returns a placeholder or we can implement a fetch
+            // return fetch('/api/get-chat-token').then(res => res.json()).then(data => data.token);
+            console.log("Fetching token from server...");
+            return "PLACEHOLDER_TOKEN";
+        }
+
         (async () => {
             try {
                 const token = await getUserToken(); // Get the token from your server
                 window.chatbase('identify', { token }); // identify the user with Chatbase
             } catch (e) {
-                console.error("Chatbase identify failed", e);
+                console.error("Chatbase identity verification failed:", e);
             }
         })();
     </script>
